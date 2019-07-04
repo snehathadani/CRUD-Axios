@@ -17,6 +17,8 @@ class FriendList extends React.Component {
                             {this.props.friends.map(friend=> {
                                return <Friend friend={friend}
                                addNewFriendHandler={this.props.addNewFriendHandler}
+                               saveEditedFriend={this.props.saveEditedFriend}
+                               handleSetData={this.props.handleSetData}
                                />
                                
                             })}

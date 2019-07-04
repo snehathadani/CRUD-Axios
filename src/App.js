@@ -12,8 +12,7 @@ class App extends React.Component {
       friendsdata:[]
     
   }
-
-  }
+}
   componentDidMount(){
     axios
     .get('http://localhost:5000/friends')
@@ -30,18 +29,23 @@ class App extends React.Component {
   submitFriend= (newFriend)=> {
     axios.post('http://localhost:5000/friends', newFriend)
     .then(response =>{ console.log("Post REsponse",response)
-    this.setState({friendsdata:response.data,})
+    this.setState({friendsdata:response.data, newFriend:''})
   })
     .catch(error=> console.log(error));
   
   };
+
+  handleSetData = data=> this.setState({friendsdata:data});
+
+
 render(){
   return (
     <div className="App">
      HEYY 
      <FriendList friends={this.state.friendsdata}
-       
-        submitFriendHandler={this.submitFriend}/>
+       saveEditedFriend={this.props.saveEditedFriend}
+        submitFriendHandler={this.submitFriend}
+        handleSetData={this.handleSetData}/>
     </div>
   );
 }
